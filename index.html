@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Google Drive Direct download link generator</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://aryan-rh-cdn.web.app/arh.about-panel.css">
+</head>
+<body>
+  <h6>Google Drive Direct download link generator proudly by <a href="https://aryanrh.rf.gd" target="_blank">Aryan R.H</a></h6>
+  <div>
+<base target="_blank"></base>
+  <script language="javascript">
+    window.onload = setup;
+
+    function setup() {
+      document.getElementById('button').addEventListener('click', go, false);
+    }
+
+    function go() {
+      var DocIDfull = document.getElementById('DocID').value;
+      var DocIDstart = DocIDfull.indexOf('/d/');
+      var DocIDend = DocIDfull.indexOf('/', DocIDstart + 3);
+      if (DocIDstart == -1) {
+        document.getElementById('Input_span').innerHTML = '<input type="text" class="form-control" id="output" value="Error: Invalid URL" readonly><br><br>';
+        return
+      }
+      if (DocIDend == -1) {
+        var DocID = DocIDfull.slice(DocIDstart + 3)
+      }
+      else {
+        var DocID = DocIDfull.slice(DocIDstart + 3, DocIDend)
+      }
+      var ID = 'https://drive.google.com/uc?export=download&id=' + DocID;
+      document.getElementById('Input_span').innerHTML = '<input type="text" class="form-control" onclick="this.select();" id="output" style="" value="' + ID + '" readonly>';
+      document.getElementByID('output').select();
+    }
+  </script>
+<h2>Enter your sharing URL:</h2>
+<input id="DocID" class="form-control" type="text" required />
+<br />
+<small>Sample link :- https://drive.google.com/file/d/1f6Tp9NSdpk8Bv1AGAeJROEIwcdFdwwwk/view?usp=sharing</small>
+<br />
+<button id="button" class="btn btn-outline-primary">Create Direct Link</button>
+<br /><br />
+<h2>Output link:</h2>
+<span id="Input_span">
+<input id="output" class="form-control" readonly="" type="text" disabled />
+<hr>
+<hr>
+</span>
+  Please note that the link will be generated only
+  <br>
+  <ol>
+    <li>If the file is uploaded in the google drive</li>
+    <li>If the permission is set to anyone</li>
+    <li>If the link is working</li>
+  </ol>
+  <script src="https://aryan-rh-cdn.web.app/arh.about-panel.js"></script>
+</body>
+</html>  
